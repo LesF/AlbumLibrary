@@ -15,6 +15,8 @@ The plugin will ensure the following columns exist (prefixed with `#` in Calibre
 |-------------|-------------|------|-------------|
 | Artist(s) | `#artist` | Text (Multi) | Performing artists or bands |
 | Genre | `#genre` | Text (Multi) | Album genres (e.g., Jazz, Blues, Rock) |
+| Media Type | `#media_type` | Enum | CD, Vinyl, Digital, etc. |
+| Discs | `#num_discs` | Integer | Number of discs in the release |
 | Release Date| `#release_date` | Date | Original album release date |
 | Tracklist | `#track_listing` | Long Text | Ordered list of tracks |
 | Lyrics URL | `#lyrics_url` | Text | Link to external lyrics provider |

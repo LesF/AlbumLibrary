@@ -12,7 +12,7 @@ class MusicBrainzSource(Source):
     capabilities = frozenset(['identify', 'cover'])
     touched_fields = frozenset([
         'title', 'authors', 'pubdate', 'tags', 'publisher', 'comments',
-        '#artist', '#genre', '#release_date', '#track_listing'
+        '#artist', '#genre', '#release_date', '#track_listing', '#media_type', '#num_discs'
     ])
 
     def get_browser(self):
@@ -97,23 +97,35 @@ class MusicBrainzSource(Source):
             # Pick the first release (or the one with the most tracks)
             releases = data.get('releases', [])
             if not releases:
-                return []
+                return [], None, 0
             
             # Sort by track count descending
             releases.sort(key=lambda x: x.get('track-count', 0), reverse=True)
             release = releases[0]
             
+            # Media Info
+            media = release.get('media', [])
+            num_discs = len(media)
+            media_type = 'Other'
+            if num_discs > 0:
+                fmt = media[0].get('format', '').lower()
+                if 'cd' in fmt: media_type = 'CD'
+                elif 'vinyl' in fmt or '12"' in fmt or '7"' in fmt: media_type = 'Vinyl'
+                elif 'digital' in fmt: media_type = 'Digital'
+                elif 'cassette' in fmt: media_type = 'Cassette'
+                elif 'dvd' in fmt: media_type = 'DVD'
+
             tracks = []
-            for medium in release.get('media', []):
+            for medium in media:
                 for track in medium.get('tracks', []):
                     title = track.get('title')
                     number = track.get('number')
                     tracks.append(f"{number}. {title}")
-            return tracks
+            return tracks, media_type, num_discs
         except Exception as e:
             if log:
                 log.error(f"Failed to fetch tracklist for {mbid}: {str(e)}")
-            return []
+            return [], None, 0
 
     def download_cover(self, log, result_queue, abort, title=None, authors=None, identifiers={}, timeout=30, get_best=False):
         url = self.get_cached_cover_url(identifiers)

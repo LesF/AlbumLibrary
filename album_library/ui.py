@@ -86,9 +86,13 @@ class AlbumUIAction(InterfaceAction):
         mbid = mi.identifiers.get('musicbrainz')
         source = MusicBrainzSource(None)
         
-        # 1. Fetch Tracklist
-        tracklist = source.fetch_tracklist(mbid)
+        # 1. Fetch Tracklist and Media Info
+        tracklist, media_type, num_discs = source.fetch_tracklist(mbid)
         mi.set('#track_listing', "\n".join(tracklist))
+        if media_type:
+            mi.set('#media_type', media_type)
+        if num_discs:
+            mi.set('#num_discs', num_discs)
         
         # 2. Download Cover
         class Log:

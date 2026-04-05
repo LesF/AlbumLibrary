@@ -33,6 +33,8 @@ class AlbumPDFGenerator:
         meta_data = [
             ['Release Date:', self.mi.pubdate.strftime('%Y') if self.mi.pubdate else 'N/A'],
             ['Genre:', ", ".join(self.mi.tags) if self.mi.tags else 'N/A'],
+            ['Media Type:', self.mi.get('#media_type', 'N/A')],
+            ['Discs:', str(self.mi.get('#num_discs', '1'))],
             ['MusicBrainz ID:', self.mi.identifiers.get('musicbrainz', 'N/A')]
         ]
         t = Table(meta_data, colWidths=[100, 300])

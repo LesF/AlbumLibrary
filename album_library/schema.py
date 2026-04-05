@@ -15,6 +15,20 @@ CUSTOM_COLUMNS = {
         'is_multiple': True,
         'display': {'is_names': False}
     },
+    'media_type': {
+        'lookup_name': 'media_type',
+        'column_heading': 'Media Type',
+        'datatype': 'enumeration',
+        'is_multiple': False,
+        'display': {'enum_values': ['CD', 'Vinyl', 'Digital', 'Cassette', 'DVD', 'Other'], 'enum_colors': []}
+    },
+    'num_discs': {
+        'lookup_name': 'num_discs',
+        'column_heading': 'Discs',
+        'datatype': 'int',
+        'is_multiple': False,
+        'display': {}
+    },
     'release_date': {
         'lookup_name': 'release_date',
         'column_heading': 'Release Date',
