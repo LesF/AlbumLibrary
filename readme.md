@@ -1,6 +1,6 @@
 # Calibre Album Library Plugin
 
-A powerful extension for [Calibre](https://calibre-ebook.com/) that transforms the world's best ebook manager into a comprehensive music record album catalog. This plugin "virtualizes" physical and digital albums as library entries, automatically generating a professional PDF "digital sleeve" for each record.
+An extension for [Calibre](https://calibre-ebook.com/) that transforms the world's best ebook manager into a comprehensive music record album catalog. This plugin "virtualizes" physical and digital albums as library entries, automatically generating a PDF "digital sleeve" for each record.
 
 ## 🚀 Key Features
 
