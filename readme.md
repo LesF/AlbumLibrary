@@ -61,4 +61,5 @@ If you manually edit an album's metadata or change its cover art:
 3.  The proxy PDF file will be updated with the latest information.
 
 ---
-*Developed with ❤️ for music collectors.*
+*Developed with ❤️ for music collectors.*  -- please view the [Wiki](../../wiki) for a real human view on the motivation for creating this (and why it was created by AI)
+
